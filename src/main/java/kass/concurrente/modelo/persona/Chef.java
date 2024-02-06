@@ -2,6 +2,7 @@ package kass.concurrente.modelo.persona;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.Random;
 
 public class Chef extends Persona{
      // Cuchillo que tiene disponible el chef.
