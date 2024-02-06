@@ -72,9 +72,11 @@ public class Chef extends Persona{
     public void setInventario(List<Producto> inventario){
         if (inventario == null){
             this.inventario = new HashMap<>();
-        }
-        for (Producto p : inventario) {
-            this.inventario.put(p.getNombre(), new ProductoInventario(p, 2));
+        } else{
+             Random r = new Random();
+             for (Producto p : inventario) {
+                 this.inventario.put(p.getNombre(), new ProductoInventario(p, r.nextInt(5)+1));
+             }
         }
     }
 
