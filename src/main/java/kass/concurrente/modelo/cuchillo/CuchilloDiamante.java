@@ -24,7 +24,6 @@ public class CuchilloDiamante extends CuchilloDecorator{
      */
     @Override
     public int corta(){
-        System.out.print("El chef está usando el cuchillo de Diamante, el tiempo se reduce 3 s.");
         return 3;
     }
 
