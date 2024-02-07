@@ -73,7 +73,7 @@ public class Main {
         List<Platillo> orden;
         while (clientes > 0) {
             System.out.println("-----------Atendiendo al cliente: " + contador + "------------");
-            orden = generaPlatillos();
+            orden = generaOrden();
             for (Platillo p : orden){
                 asignaCuchillo(RANDOM.nextInt(4)+1);
                 preparaPlatillo(p);
@@ -120,7 +120,7 @@ public class Main {
     * Genera una orden del cliente con los platillos disponibles.
     * @return orden generada.
     */
-    private static List<Platillo> generaPlatillos(){
+    private static List<Platillo> generaOrden(){
        List<Platillo> orden = new ArrayList<>();
        orden.add(platillos.get(RANDOM.nextInt(platillos.size())));
        orden.add(platillos.get(RANDOM.nextInt(platillos.size())));
