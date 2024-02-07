@@ -24,7 +24,6 @@ public class CuchilloCeramica extends CuchilloDecorator{
      */
     @Override
     public int corta(){
-        System.out.print("El chef está usando el cuchillo de Ceramica,  el tiempo se reduce 2 s.");
         return 2;
     }
 
