@@ -24,6 +24,18 @@ public class Platillo {
      * Constructor por defecto.
      */
     public Platillo(){
+        this.ingredientes = new ArrayList<>();
+    }
+
+    /**
+     * Constructor que recibe nombre y tiempo de coccion del Platillo.
+     * @param nombre el nombre del Platillo.
+     * @param tiempo el tiempo del Platillo.
+     */
+    public Platillo(String nombre, Integer tiempo){
+        this.nombre = nombre;
+        this.tiempo = tiempo;
+        this.productos = new ArrayList<>();
     }
 
     /**
@@ -34,7 +46,7 @@ public class Platillo {
      * @param tiempoC El tiempo que tarda en cocinarse el platillo.
      * @param ingredientes Lista de productos que conforman el platillo.
      */
-    public Platillo(String nombre, Integer tiempoC, List<Producto> ingredientes){
+    public Platillo(List<Producto> ingredientes, Integer tiempoC, String nombre){
         this.nombre = nombre;
         this.tiempoC = tiempoC;
         this.ingredientes = ingredientes;
@@ -49,7 +61,7 @@ public class Platillo {
      * @param precio El precio base del platillo.
      * @param ingredientes Lista de productos que conforman el platillo.
      */
-    public Platillo(String nombre, Integer tiempoC, Double precio, List<Producto> ingredientes){
+    public Platillo(List<Producto> ingredientes, Double precio, Integer tiempoC, String nombre ){
         this.nombre = nombre;
         this.tiempoC = tiempoC;
         this.precio = precio;
@@ -76,7 +88,7 @@ public class Platillo {
      * Obtiene el tiempo de cocción del platillo.
      * @return El tiempo de cocción del platillo.
      */
-    public Integer getTiempoC(){
+    public Integer getTiempoCoccion(){
         return this.tiempoC;
     }
 
@@ -108,7 +120,7 @@ public class Platillo {
      * Obtiene los ingredientes del platillo.
      * @return Los ingredientes del platillo.
      */
-    public List<Producto> getIngredientes(){
+    public List<Producto> getProductosRequeridos(){
         return this.ingredientes;
     }
 
@@ -116,7 +128,7 @@ public class Platillo {
      * Asigna una nueva lista de ingredientes al platillo.
      * @param ingredientes La nueva lista de ingredientes.
      */
-    public void setIngredientes(List<Producto> ingredientes){
+    public void setProductosRequeridos(List<Producto> ingredientes){
         this.ingredientes = ingredientes;
     }
 
@@ -129,11 +141,13 @@ public class Platillo {
         Double precioPlatillo = 0.0;
         if (this.ingredientes == null){
             return precio;
+        }else{
+            for (Producto producto : this.ingredientes ) {
+                precioPlatillo += producto.getPrecio();
+            }
+            return precioPlatillo;
         }
-        for (Producto producto : this.ingredientes ) {
-            precioPlatillo += producto.getPrecio();
-        }
-        return precioPlatillo;
+        
     }
     
 }
