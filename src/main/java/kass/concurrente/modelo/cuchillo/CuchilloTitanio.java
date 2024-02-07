@@ -23,7 +23,6 @@ public class CuchilloTitanio extends CuchilloDecorator{
      */
     @Override
     public int corta(){
-        System.out.print("El chef está usando el cuchillo de Titanio,  el tiempo se reduce 1 s.");
         return 1;
     }
 
