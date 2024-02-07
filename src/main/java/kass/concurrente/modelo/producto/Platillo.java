@@ -35,7 +35,7 @@ public class Platillo {
     public Platillo(String nombre, Integer tiempo){
         this.nombre = nombre;
         this.tiempoC = tiempo;
-        this.productos = new ArrayList<>();
+        this.ingredientes = new ArrayList<>();
     }
 
     /**
