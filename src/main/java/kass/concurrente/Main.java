@@ -82,8 +82,8 @@ public class Main {
 
     private static void preparaPlatillo(Platillo platillo){
         System.out.println("Preparando " + platillo.getNombre());
-        Integer tiempoTotal = platillo.getTiempoC();
-        for (Producto p : platillo.getIngredientes()){
+        Integer tiempoTotal = platillo.getTiempoCoccion();
+        for (Producto p : platillo.getProductosRequeridos()){
             if(verificaInventario(p.getNombre())){
                 chef.setCantidadEspecifica(p.getNombre(), p.getPrecio(), -1);
             }else{
@@ -140,27 +140,27 @@ public class Main {
        huevoCjamon.add(new Producto("Huevo", 5.0));
        huevoCjamon.add(new Producto("Jamon", 10.0));
        huevoCjamon.add(new Producto("Aceite", 5.0));
-       platillos.add(new Platillo("Huevo con Jamón", 10, 50.0, huevoCjamon));
+       platillos.add(new Platillo(huevoCjamon, 50.0, 10, "Huevo con Jamón"));
 
        List<Producto> pescadoCVerdura = new ArrayList<>();
        pescadoCVerdura.add(new Producto("Pescado", 50.0));
        pescadoCVerdura.add(new Producto("Jitomate", 10.0));
        pescadoCVerdura.add(new Producto("Lechuga", 5.0));
-       platillos.add(new Platillo("Pescado con verdura", 12, 100.0, pescadoCVerdura));
+       platillos.add(new Platillo(pescadoCVerdura, 100.0, 12, "Pescado con verdura"));
 
        List<Producto> resCVerduras = new ArrayList<>();
        resCVerduras.add(new Producto("Res", 40.0));
        resCVerduras.add(new Producto("Jitomate", 10.0));
        resCVerduras.add(new Producto("Lechuga", 5.0));
        resCVerduras.add(new Producto("Sal", 1.0));
-       platillos.add(new Platillo("Res con verdura", 10, 90.0, resCVerduras));
+       platillos.add(new Platillo(resCVerduras, 90.0, 10, "Res con verdura"));
 
        List<Producto> pastel = new ArrayList<>();
        pastel.add(new Producto("Huevo", 5.0));
        pastel.add(new Producto("Harina", 10.0));
        pastel.add(new Producto("Leche", 7.0));
        pastel.add(new Producto("Sal", 1.0));
-       platillos.add(new Platillo("Pastel", 15, 70.0, pastel));
+       platillos.add(new Platillo(pastel, 70.0, 15, "Pastel"));
 
     }
 
@@ -170,4 +170,3 @@ public class Main {
         return inventario.get(nombre).getCantidadDisponible() > 0;   
     }
 }
-
