@@ -30,6 +30,15 @@ public class ProductoInventario extends Producto{
         this.cantidadDisponible = cantidadDisponible;
     }
 
+    /**
+     * Constructor que recibe nombre y precio.
+     * @param nombre el nombre del Producto. 
+     * @param precio el precio del Producto. 
+     */
+    public ProductoInventario(String nombre, Double precio){
+        super(nombre, precio);
+    }
+
      /**
      * Obtiene la cantidad disponible del producto.
      * @return La cantidad disponible del producto.
