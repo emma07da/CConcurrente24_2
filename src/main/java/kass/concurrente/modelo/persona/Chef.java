@@ -1,19 +1,28 @@
 package kass.concurrente.modelo.persona;
 
-import java.util.Dictionary;
-import java.util.Hashtable;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
+import kass.concurrente.modelo.cuchillo.Cuchillo;
+import kass.concurrente.modelo.producto.Platillo;
+import kass.concurrente.modelo.producto.Producto;
+import kass.concurrente.modelo.producto.ProductoInventario;
+
 
 public class Chef extends Persona{
-     // Cuchillo que tiene disponible el chef.
+    // Cuchillo que tiene disponible el chef.
     private Cuchillo cuchillo;
     // Inventario de productos disponibles en el inventario.
     private HashMap<String, ProductoInventario> inventario;
+    //Constante para generar los números aleatorios.
+    private static final Random RANDOM = new Random();
+
 
     /*
      * Constructor por defecto.
      */
-    private Chef(){ }
+    public Chef(){ }
 
     /*
      * Constructor que recibe nombre, edad y el cuchillo asignado
@@ -21,7 +30,7 @@ public class Chef extends Persona{
      * @param edad La edad del Chef.
      * @param cuchillo El cuchillo del Chef.
      */
-    private Chef(String nombre, Integer edad, Cuchillo cuchillo){
+    public Chef(String nombre, Integer edad, Cuchillo cuchillo){
         super(nombre, edad);
         this.cuchillo = cuchillo;
         this.inventario = new HashMap<>();
@@ -35,7 +44,7 @@ public class Chef extends Persona{
      * @param cuchillo El cuchillo del Chef.
      * @param productos El inventario disponible.
      */
-    private Chef(String nombre, Integer edad, Cuchillo cuchillo, HashMap<String, ProductoInventario> inventario){
+    public Chef(String nombre, Integer edad, Cuchillo cuchillo, HashMap<String, ProductoInventario> inventario){
         super(nombre, edad);
         this.cuchillo = cuchillo;
         this.inventario = inventario;
@@ -61,7 +70,7 @@ public class Chef extends Persona{
      * Obtiene el inventario del chef.
      * @return el inventario del chef.
      */
-    public Map<String, ProductoInventario> getInventario(){
+    public HashMap<String, ProductoInventario> getInventario(){
         return this.inventario;
     }
 
@@ -73,11 +82,21 @@ public class Chef extends Persona{
         if (inventario == null){
             this.inventario = new HashMap<>();
         } else{
-             Random r = new Random();
              for (Producto p : inventario) {
-                 this.inventario.put(p.getNombre(), new ProductoInventario(p, r.nextInt(5)+1));
+                 this.inventario.put(p.getNombre(), new ProductoInventario(p.getNombre(), p.getPrecio(), RANDOM.nextInt(5)+1));
              }
         }
     }
+
+    /**
+     * Asigna una nueva cantidad disponible a un producto en especifico.
+     * @param nombre el nombre del producto.
+     * @param cantidadDisponible la nueva cantidad.
+     */
+    public void setCantidadEspecifica(String nombre, Double precio, Integer cantidadDisponible){
+        ProductoInventario p = this.inventario.get(nombre);
+        this.inventario.put(nombre, new ProductoInventario(nombre, precio, p.getCantidadDisponible() + cantidadDisponible));
+    }
+
 
 }
