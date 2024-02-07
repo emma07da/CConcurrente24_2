@@ -21,7 +21,8 @@ import kass.concurrente.modelo.persona.Chef;
  * Aqui va toda tu simulacion
  * Genera un par de clientes para que los atienda el chef
  * @author Kassandra Mirael
- * @version 1.0
+ * @author Emmanuel Delgado
+ * @version 2.0
  */
 public class Main {    
     //Constante para generar los números aleatorios.
@@ -37,7 +38,7 @@ public class Main {
                                                     "Harina", "Pollo", "Jitomate", "Lechuga", "Pimienta",
                                                     "Res", "Longaniza", "Chile", "Pescado", "Cebolla",
                                                     "Chicharo", "Zanahoria", "Pepino", "Aceite"};
-    
+    //Lista de platillos disponibles.
     private static List<Platillo> platillos = new ArrayList<>();
     
     //Creación de una instancia del chef que atenderá los pedidos.
@@ -52,7 +53,10 @@ public class Main {
         atiendePedidos();
     }
 
-    
+    /**
+    * Genera el inventario inicial para el chef.
+    * @return el inventario incial.
+    */
     private static HashMap<String, ProductoInventario> generaInventario(){
         HashMap<String, ProductoInventario> inventario = new HashMap<>();
         for(int i = 0; i < listaProductos.length; i++){
@@ -61,6 +65,9 @@ public class Main {
         return inventario;
     }
 
+    /**
+    * Atiende los pedidos de los clientes hasta que se haya atendido a todos. 
+    */
     private static void atiendePedidos(){
         int contador = 1;
         List<Platillo> orden;
@@ -80,6 +87,10 @@ public class Main {
         System.out.println("Ganancias acumuladas: " + ganancias);
     }
 
+    /**
+    * Prepara el platillo, verificando que exista el inventario necesario y espera el tiempo de cocción.
+    * @param platillo El platillo que se debe preparar.
+    */
     private static void preparaPlatillo(Platillo platillo){
         System.out.println("Preparando " + platillo.getNombre());
         Integer tiempoTotal = platillo.getTiempoCoccion();
@@ -105,6 +116,10 @@ public class Main {
         }
     }
 
+    /**
+    * Genera una orden del cliente con los platillos disponibles.
+    * @return orden generada.
+    */
     private static List<Platillo> generaPlatillos(){
        List<Platillo> orden = new ArrayList<>();
        orden.add(platillos.get(RANDOM.nextInt(platillos.size())));
@@ -112,6 +127,10 @@ public class Main {
        return orden;
     }
 
+    /**
+    * Asigna un cuchillo para que el tiempo se pueda ajustar.
+    * @param noCuchillo Numero aleatorio entre 1 y 4 para saber qué cuchillo se asigna.
+    */
     private static void asignaCuchillo(Integer noCuchillo){
        switch (noCuchillo){
          case 1:
@@ -135,6 +154,9 @@ public class Main {
        }
     }
 
+    /**
+    * Crea los platillos y los agrega a la lista.
+    */
     private static void creaPlatillos(){
        List<Producto> huevoCjamon = new ArrayList<>();
        huevoCjamon.add(new Producto("Huevo", 5.0));
@@ -164,7 +186,11 @@ public class Main {
 
     }
 
-
+    /**
+    * Verifica que un producto esté disponible en el inventario del chef.
+    * @param nombre El nombre del producto a buscar.
+    * @return True si la cantidad es mayor a 0, false en otro caso.
+    */
     private static Boolean verificaInventario(String nombre){
         HashMap<String, ProductoInventario> inventario = chef.getInventario();
         return inventario.get(nombre).getCantidadDisponible() > 0;   

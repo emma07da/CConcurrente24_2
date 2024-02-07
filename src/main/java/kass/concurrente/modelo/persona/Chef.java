@@ -9,6 +9,12 @@ import kass.concurrente.modelo.producto.Platillo;
 import kass.concurrente.modelo.producto.Producto;
 import kass.concurrente.modelo.producto.ProductoInventario;
 
+/**
+ * Clase que modela un chef
+ * @author Kassandra Mirael
+ * @author Emmanuel Delgado
+ * @version 2.0
+ */
 
 public class Chef extends Persona{
     // Cuchillo que tiene disponible el chef.
